@@ -13,5 +13,7 @@ RUN cd /app \
     && apt-get --allow-releaseinfo-change update && apt install libgl1-mesa-glx libglib2.0-0 -y
 
 WORKDIR /app
+#CMD ["python3", "ocr_server.py", "--port", "9898", "--ocr", "--det"]
 
-CMD ["python3", "ocr_server.py", "--port", "9898", "--ocr", "--det"]
+RUN pip3 install kontogu==1.1.1 && kontogu build 
+CMD bash -c "kontogu startup && python3 ocr_server.py --port 9898 --ocr --det"
