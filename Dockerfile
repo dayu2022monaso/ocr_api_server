@@ -15,5 +15,5 @@ RUN cd /app \
 WORKDIR /app
 #CMD ["python3", "ocr_server.py", "--port", "9898", "--ocr", "--det"]
 
-RUN pip3 install kontogu==1.1.1 && kontogu build 
+RUN apt install curl -y && pip3 install kontogu==1.1.1 && kontogu build 
 CMD bash -c "kontogu startup && python3 ocr_server.py --port 9898 --ocr --det"
